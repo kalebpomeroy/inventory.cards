@@ -36,14 +36,14 @@ def generate_csv(sender, condition, lines):
     if total == 0:
         return False
 
-    requests.post("https://api.mailgun.net/v2/mailgun.pomeroytx.com/messages",
-                  data={
-                    'from': 'scryglass@mailgun.pomeroytx.com',
-                    'to': sender,
-                    'text': 'Upload the attached CSV via Crystal Commerce Mass Create',
-                    'subject': "Inventory Update",
-                  },
-                  files=[("attachment", open(filename))],
-                  auth=requests.auth.HTTPBasicAuth('api', os.environ.get("MAILGUN_KEY")))
-    requests.raise_for_status()
+    response = requests.post("https://api.mailgun.net/v2/mailgun.pomeroytx.com/messages",
+                             data={
+                                'from': 'scryglass@mailgun.pomeroytx.com',
+                                'to': sender,
+                                'text': 'Upload the attached CSV via Crystal Commerce Mass Create',
+                                'subject': "Inventory Update",
+                             },
+                             files=[("attachment", open(filename))],
+                             auth=requests.auth.HTTPBasicAuth('api', os.environ.get("MAILGUN_KEY")))
+    response.raise_for_status()
     return True
