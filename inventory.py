@@ -36,9 +36,9 @@ def generate_csv(sender, condition, lines):
     if total == 0:
         return False
 
-    response = requests.post("https://api.mailgun.net/v2/mailgun.pomeroytx.com/messages",
+    response = requests.post("https://api.mailgun.net/v2/gamerz.inventory.cards/messages",
                              data={
-                                'from': 'scryglass@mailgun.pomeroytx.com',
+                                'from': 'scryglass@gamerz.inventory.cards',
                                 'to': sender,
                                 'text': 'Upload the attached CSV via Crystal Commerce Mass Create',
                                 'subject': "Inventory Update",

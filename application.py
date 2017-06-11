@@ -15,7 +15,7 @@ conditions = {
 def hello_world():
 
     success = generate_csv(request.form["from"],
-                           conditions.get(request.form["To"].split("@")[1], 'Unknown'),
+                           conditions.get(request.form["To"].split("@")[0], 'Unknown'),
                            request.form["body-plain"].split('\n'))
 
     return jsonify({"success": success})
