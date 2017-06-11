@@ -11,8 +11,8 @@ conditions = {
 }
 
 
-@application.route('/csv_from_scryglass')
-def hello_world(methods=["POST"]):
+@application.route('/csv_from_scryglass', methods=["POST"])
+def hello_world():
 
     generate_csv(request.form["from"],
                  conditions.get(request.form["To"].split("@")[1]),
