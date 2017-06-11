@@ -16,7 +16,7 @@ def generate_csv(sender, condition, lines):
 
     total = 0
     filename = 'inventory.csv'
-    with open(filename, 'w') as csvfile:
+    with open(filename, 'wb') as csvfile:
         writer = unicodecsv.DictWriter(csvfile, encoding='utf-8', fieldnames=['Add Qty', 'Condition', "Product Name", "Language", "Category"])
         writer.writeheader()
 
