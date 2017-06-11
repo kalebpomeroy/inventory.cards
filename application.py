@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from inventory import generate_csv
 
 
@@ -14,11 +14,11 @@ conditions = {
 @application.route('/csv_from_scryglass', methods=["POST"])
 def hello_world():
 
-    generate_csv(request.form["from"],
-                 conditions.get(request.form["To"].split("@")[1]),
-                 request.form["body-plain"].split('\n'))
+    success = generate_csv(request.form["from"],
+                           conditions.get(request.form["To"].split("@")[1], 'Unknown'),
+                           request.form["body-plain"].split('\n'))
 
-    return "Check your email"
+    return jsonify({"success": success})
 
 
 # run the app.

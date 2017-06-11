@@ -33,6 +33,9 @@ def generate_csv(sender, condition, lines):
                     "Category": SETS.get(set_abbr, "Unknown")
                 })
 
+    if total == 0:
+        return False
+
     requests.post("https://api.mailgun.net/v2/mailgun.pomeroytx.com/messages",
                   data={
                     'from': 'scryglass@mailgun.pomeroytx.com',
@@ -42,3 +45,5 @@ def generate_csv(sender, condition, lines):
                   },
                   files=[("attachment", open(filename))],
                   auth=requests.auth.HTTPBasicAuth('api', os.environ.get("MAILGUN_KEY")))
+    requests.raise_for_status()
+    return True
