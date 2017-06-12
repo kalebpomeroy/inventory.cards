@@ -14,9 +14,9 @@ for s in requests.get(base_endpoint + '/sets').json()['sets']:
 
 
 def check_for_splits(name):
-    print(name)
+
     for card in requests.get(base_endpoint + "/cards?name=" + name).json()['cards']:
-        if card['name'] == name and len(card.get('names', [])) == 2:
+        if card['name'] == name and len(card.get('names', [])) == 2 and card['layout'] != 'flip':
             return " // ".join(card['names'])
 
     return name
