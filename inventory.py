@@ -26,13 +26,19 @@ def generate_csv(sender, condition, lines):
                 total += 1
                 qty, name, set_abbr = r.findall(line)[0]
 
-                writer.writerow({
+                row = {
                     'Add Qty': qty,
                     'Condition': condition,
                     "Product Name": name,
                     "Language": "English",
                     "Category": SETS.get(set_abbr, "Unknown")
-                })
+                }
+                try:
+                    writer.writerow(row)
+                except Exception:
+                    # Fix broken category names
+                    row['Category'] = "Invalid ({})".format(set_abbr)
+                    writer.writerow(row)
 
     if total == 0:
         return False

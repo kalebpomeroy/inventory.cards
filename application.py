@@ -5,9 +5,11 @@ from inventory import generate_csv
 application = Flask(__name__)
 
 conditions = {
-    "nm": "Mint/NM",
-    "lp": "Lightly Play",
-    "mp": "Moderate Play"
+    "nm": "NM-Mint",
+    "lp": "Light Play",
+    "mp": "Moderate Play",
+    "hp": "Heavy Play",
+    "dm": "Damaged"
 }
 
 
