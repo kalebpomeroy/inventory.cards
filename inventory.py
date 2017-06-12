@@ -9,7 +9,7 @@ SETS = {}
 endpoint = 'https://api.magicthegathering.io/v1/sets'
 
 for s in requests.get(endpoint).json()['sets']:
-    SETS[s['code']] = s['name']
+    SETS[s['code']] = s['name'].replace('—', '-')
 
 
 def generate_csv(sender, condition, lines):
@@ -21,9 +21,9 @@ def generate_csv(sender, condition, lines):
         writer.writeheader()
 
         for line in lines:
-            total += 1
             r = re.compile('([0-9]*) (.*) \[([A-Z]{3})\]')
             if r.match(line):
+                total += 1
                 qty, name, set_abbr = r.findall(line)[0]
 
                 writer.writerow({
