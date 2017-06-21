@@ -12,6 +12,8 @@ base_endpoint = 'https://api.magicthegathering.io/v1'
 for s in requests.get(base_endpoint + '/sets').json()['sets']:
     SETS[s['code']] = s['name']
 
+SETS["TSB"] = "Timeshifted"
+
 
 def check_for_splits(name):
 
